@@ -1,0 +1,26 @@
+#include <Arduino.h>
+
+#define pot1 34
+#define pot2 35
+
+//variables del renap 
+int temp1 = 0;
+int temp2 = 0;
+int valorpot1 = 0;
+int valorpot2 = 0;
+
+void setup(){
+  Serial2.begin(115200);
+}
+
+void loop(){
+  temp1 = analogRead(pot1);
+  temp2 = analogRead(pot2);
+  valorpot1 = map(temp1,0,4095,0,15);
+  valorpot2 = map(temp2,0,4095,0,15);
+//empieza la comunication
+
+Serial2.write(valorpot1);
+Serial2.write(valorpot2);
+delay(500);
+}
